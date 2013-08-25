@@ -1,6 +1,5 @@
 package org.assetloader.loaders
 {
-	import com.adobe.serialization.json.JSON;
 
 	import org.assetloader.base.AssetType;
 	import org.assetloader.signals.LoaderSignal;
@@ -43,7 +42,7 @@ package org.assetloader.loaders
 
 		/**
 		 * @private
-		 * 
+		 *
 		 * @inheritDoc
 		 */
 		override protected function testData(data : String) : String
@@ -51,7 +50,7 @@ package org.assetloader.loaders
 			var errMsg : String = "";
 			try
 			{
-				_data = _jsonObject = JSON.decode(data);
+				_data = _jsonObject = JSON.parse(data);
 			}
 			catch(err : Error)
 			{
@@ -63,7 +62,7 @@ package org.assetloader.loaders
 
 		/**
 		 * Gets the resulting Json Object after loading and parsing is complete.
-		 * 
+		 *
 		 * @return Object
 		 */
 		public function get jsonObject() : Object

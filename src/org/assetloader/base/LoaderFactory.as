@@ -1,6 +1,7 @@
 package org.assetloader.base
 {
-	import org.assetloader.parsers.URLParser;
+import org.assetloader.loaders.PropertiesLoader;
+import org.assetloader.parsers.URLParser;
 	import org.assetloader.AssetLoader;
 	import org.assetloader.core.ILoader;
 	import org.assetloader.core.IParam;
@@ -19,9 +20,9 @@ package org.assetloader.base
 
 	/**
 	 * LoaderFactory purly generates ILoader instances.
-	 * 
+	 *
 	 * @see org.assetloader.core.ILoader
-	 * 
+	 *
 	 * @author Matan Uberstein
 	 */
 	public class LoaderFactory
@@ -37,15 +38,17 @@ package org.assetloader.base
 
 		/**
 		 * Produces an ILoader instance according to parameters passed.
-		 * 
+		 *
 		 * @param id Unique Loader id.
 		 * @param type Type of the new ILoader.
 		 * @param request URLRequest to be loaded.
 		 * @param params Rest argument of parameters to be passed to ILoader.
-		 * 
+		 *
 		 * @return Resulting ILoader.
-		 * 
-		 * @see org.assetloader.base.AssetType		 * @see org.assetloader.base.Param		 * @see org.assetloader.core.ILoader
+		 *
+		 * @see org.assetloader.base.AssetType
+		 * @see org.assetloader.base.Param
+		 * @see org.assetloader.core.ILoader
 		 */
 		public function produce(id : String, type : String = "AUTO", request : URLRequest = null, params : Array = null) : ILoader
 		{
@@ -128,6 +131,9 @@ package org.assetloader.base
 			if(extension == "mp3")
 				return AssetType.SOUND;
 
+            if(extension == "properties")
+                return AssetType.PROPERTIES;
+
 			if(testExtenstion(videoExt, extension))
 				return AssetType.VIDEO;
 
@@ -168,6 +174,10 @@ package org.assetloader.base
 				case AssetType.CSS:
 					_loader = new CSSLoader(request, id);
 					break;
+
+                case AssetType.PROPERTIES:
+                    _loader = new PropertiesLoader(request, id);
+                    break;
 
 				case AssetType.BINARY:
 					_loader = new BinaryLoader(request, id);

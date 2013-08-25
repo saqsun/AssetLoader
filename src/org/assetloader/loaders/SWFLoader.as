@@ -1,6 +1,9 @@
 package org.assetloader.loaders
 {
-	import org.assetloader.base.AssetType;
+import flash.utils.getDefinitionByName;
+import flash.utils.getQualifiedClassName;
+
+import org.assetloader.base.AssetType;
 	import org.assetloader.signals.LoaderSignal;
 
 	import flash.display.DisplayObject;
